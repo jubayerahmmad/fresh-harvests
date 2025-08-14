@@ -4,32 +4,40 @@ import Link from "next/link";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div>
-      <div className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow p-2 ">
-        <div className="w-[149px] h-[120px] lg:w-[230px] lg:h-[200px] xl:w-[258px] xl:h-[208px] bg-gray-200 rounded-md mx-auto">
+    <div className="bg-white rounded-2xl overflow-hidden border border-gray-400/20 w-full mx-auto">
+      {/* Product Image with Heart Icon */}
+      <div className="relative p-6 pb-4">
+        <div className="w-full h-48 sm:h-56 md:h-64 bg-gray-50 rounded-xl overflow-hidden relative">
           <Image
             src={product?.images[0]}
             alt={product?.productName}
             width={500}
             height={500}
             unoptimized
-            className="w-full h-full "
+            className="w-full h-full object-cover"
           />
         </div>
+      </div>
 
-        <div className="text-center p-2">
-          <h3 className="text-lg font-semibold ">{product?.productName}</h3>
-          <p className="text-gray-600 ">${product?.price}</p>
-          <div className="w-full flex flex-col md:flex-row justify-between items-center gap-1">
-            <Link href={`/shop/${product?.id}`} className="w-full ">
-              <button className="w-full px-1 border border-gray-300 bg-white text-black py-2 rounded hover:bg-[#FF6A1A] transition">
-                See Details
-              </button>
-            </Link>
-            <button className="w-full px-1 border border-gray-300 bg-white text-black py-2 rounded hover:bg-[#FF6A1A] transition">
-              Add to cart
+      {/* Product Info */}
+      <div className="text-center px-6 pb-6 space-y-4">
+        <h3 className="text-lg font-medium text-gray-900">
+          {product?.productName}
+        </h3>
+
+        <p className="text-xl font-semibold text-gray-900">${product?.price}</p>
+
+        {/* Action Buttons */}
+        <div className="space-y-3">
+          <Link href={`/shop/${product?.id}`} className="block w-full">
+            <button className="w-full py-3 px-4 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200 cursor-pointer">
+              Learn More
             </button>
-          </div>
+          </Link>
+
+          <button className="w-full py-3 px-4 text-sm font-medium text-white bg-orange-500 hover:bg-gray-800 rounded-lg transition-colors duration-200 cursor-pointer">
+            Add to cart
+          </button>
         </div>
       </div>
     </div>

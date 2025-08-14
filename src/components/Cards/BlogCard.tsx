@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 interface BlogCardProps {
   imageSrc: string;
@@ -8,7 +7,7 @@ interface BlogCardProps {
   title: string;
   link: string;
 }
-//  w-[343px] h-[370px] lg:w-[340px] xl:w-[384px] md:h-[399px]
+
 const BlogCard: React.FC<BlogCardProps> = ({ imageSrc, date, title, link }) => (
   <div className="bg-white space-y-3 pl-1">
     <Image

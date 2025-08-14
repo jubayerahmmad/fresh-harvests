@@ -1,5 +1,117 @@
-const AllProducts = () => {
-  return <div>AllProducts</div>;
-};
+"use client";
+import {
+  useGetCategoryQuery,
+  useGetProductsQuery,
+} from "@/services/productApi";
 
-export default AllProducts;
+import { Product } from "@/types/product";
+import Loader from "@/components/Loader";
+import Navbar from "@/components/Navbar";
+import { useState } from "react";
+import { CategoryType } from "@/types/category";
+import ProductCard from "@/components/Cards/ProductCard";
+
+export default function Shop() {
+  const { data: products, error, isLoading } = useGetProductsQuery();
+  const {
+    data: category,
+    error: categoryError,
+    isLoading: isPending,
+  } = useGetCategoryQuery();
+  const [allProduct, setAllProduct] = useState<Product[]>([]);
+  const [show, setShow] = useState("All");
+
+  const productsData = products?.data as Product[];
+  const categoryData = category?.data as CategoryType[];
+
+  const handleFilter = (id: string, name?: string) => {
+    if (id === "All") {
+      setAllProduct([]);
+      setShow("All");
+      return;
+    } else {
+      setShow(name as string);
+      const filteredProducts = productsData?.filter((product) => {
+        return product.categoryId === id;
+      });
+      setAllProduct(filteredProducts as Product[]);
+    }
+  };
+
+  if (isLoading || isPending)
+    return (
+      <div className="flex justify-center">
+        <Loader />
+      </div>
+    );
+  if (error || categoryError)
+    return <p className="p-4 text-red-500">Failed to load products.</p>;
+
+  return (
+    <section>
+      <Navbar />
+      <div className="text-center mb-8 mt-20 space-y-3 md:space-y-4 ">
+        <header className="text-center flex flex-col space-y-5">
+          <h5 className="section-badge mx-auto">Our Products</h5>
+          <h2 className="text-2xl lg:text-4xl font-bold">Our Fresh Products</h2>
+          <p className="text-sm max-w-sm mx-auto">
+            We pride ourselves on offering a wide variety of fresh and flavorful
+            fruits, vegetables, and salad ingredients.
+          </p>
+        </header>
+        <div className="flex justify-center mt-6 gap-1 md:gap-3 md:space-x-4">
+          <button
+            onClick={() => handleFilter("All")}
+            className={`px-3 md:px-4 py-2 rounded-md border ${
+              show === "All"
+                ? "bg-[#749B3F] text-white"
+                : "bg-white text-gray-700 border-gray-300"
+            } hover:bg-[#749B3F] hover:text-white transition`}
+          >
+            All
+          </button>
+          {categoryData?.map((category, index) => (
+            <button
+              onClick={() => handleFilter(category?.id, category?.categoryName)}
+              key={index}
+              className={`px-3 md:px-4 py-2 rounded-md border capitalize ${
+                show === category?.categoryName
+                  ? "bg-[#749B3F] text-white"
+                  : "bg-white text-gray-700 border-gray-300"
+              } hover:bg-[#749B3F] hover:text-white transition`}
+            >
+              {category?.categoryName}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {show === "Drinksss" && allProduct.length === 0 ? (
+        <>
+          <div className="text-center py-20">
+            <h1 className="text-4xl font-bold">Nothing Here Yet</h1>
+            <p className="text-sm py-4 max-w-[400px] mx-auto">
+              It looks like there are no products available under this category
+              right now. Try selecting a different filter or check back soon to
+              see our fresh additions!
+            </p>
+          </div>
+        </>
+      ) : (
+        <div className="container mx-auto p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {allProduct.length > 0 ? (
+            allProduct?.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))
+          ) : (
+            <>
+              {productsData?.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}

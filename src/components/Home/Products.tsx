@@ -68,13 +68,13 @@ const Products = () => {
               : "bg-white text-gray-700 border-gray-300"
           } hover:bg-[#749B3F] hover:text-white transition`}
         >
-          ALl
+          All
         </button>
         {categoryData?.map((category, index) => (
           <button
             onClick={() => handleFilter(category?.id, category?.categoryName)}
             key={index}
-            className={`px-3 md:px-4 py-2 rounded-md border ${
+            className={`px-3 md:px-4 py-2 rounded-md border capitalize ${
               show === category?.categoryName
                 ? "bg-[#749B3F] text-white"
                 : "bg-white text-gray-700 border-gray-300"
@@ -113,7 +113,7 @@ const Products = () => {
       )}
       <div className=" w-full text-center mt-8">
         <Link href="/shop">
-          <button className="cursor-pointer  border border-[#FF6A1A]  bg-white  font-semibold px-16 py-2 rounded hover:bg-[#FF6A1A] hover:text-black text-[#FF6A1A] transition">
+          <button className="cursor-pointer  border border-[#FF6A1A]  bg-white  font-semibold px-16 py-2 rounded-lg hover:bg-[#FF6A1A] hover:text-black text-[#FF6A1A] transition">
             See all products
           </button>
         </Link>
