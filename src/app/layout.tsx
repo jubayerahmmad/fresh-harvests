@@ -3,6 +3,7 @@ import { Rubik } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Providers } from "@/redux/Providers";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -26,11 +27,13 @@ export default function RootLayout({
       <body
         className={`${rubik.className} antialiased flex flex-col min-h-screen`}
       >
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <footer className="w-full bg-gray-200">
-          <Footer />
-        </footer>
+        <Providers>
+          <Navbar />
+          <main className="flex-grow">{children}</main>
+          <footer className="w-full bg-gray-200">
+            <Footer />
+          </footer>
+        </Providers>
       </body>
     </html>
   );
