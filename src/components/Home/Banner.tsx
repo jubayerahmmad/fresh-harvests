@@ -83,13 +83,13 @@ const Banner = () => {
           </div>
         </div>
 
-        {/* Hero Kid Image */}
+        {/* Hero Image */}
         <Image
           src="/images/hero-kid.webp"
           alt="Logo"
           width={1043}
           height={1137}
-          className="absolute -right-40 bottom-0 w-[695px] lg:right-0 2xl:w-[1000px]"
+          className="absolute -right-40 bottom-0 w-[695px] lg:-right-40 2xl:w-[1000px]"
         />
       </div>
     </section>

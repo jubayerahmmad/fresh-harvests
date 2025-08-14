@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import AuthModal from "./Modals/AuthModal";
 
 type NavbarProps = {
   name: string;
@@ -15,6 +16,10 @@ type NavbarProps = {
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathName = usePathname();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  const openAuthModal = () => setIsAuthModalOpen(true);
+  const closeAuthModal = () => setIsAuthModalOpen(false);
 
   const navElement = ({ name, path }: NavbarProps) => {
     const isActive =
@@ -84,7 +89,10 @@ const Navbar = () => {
               </button>
 
               {/* Sign In Button */}
-              <button className="bg-transparent hover:bg-orange-700 border border-black hover:border-orange-700 text-black px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer">
+              <button
+                onClick={openAuthModal}
+                className="bg-transparent hover:bg-orange-700 border border-black hover:border-orange-700 text-black px-4 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer"
+              >
                 Sign in
               </button>
 
@@ -102,6 +110,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
+        <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} />
 
         {/* Mobile Menu */}
         <div
