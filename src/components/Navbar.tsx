@@ -25,8 +25,8 @@ const Navbar = () => {
         onClick={() => setMenuOpen(false)}
         className={`font-medium transition-colors duration-200 ${
           isActive
-            ? "text-orange-500 border-b-2 border-orange-500 pb-1"
-            : "text-gray-800 hover:text-orange-500"
+            ? "text-green-700 border-b-2 border-green-700 pb-1"
+            : "text-gray-800 hover:text-green-700"
         }`}
       >
         <Link href={path} className="text-sm lg:text-base">
