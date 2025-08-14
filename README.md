@@ -7,14 +7,12 @@ A modern e-commerce platform for ordering fresh fruits and vegetables online. Ou
 - **User-Friendly Interface:** Clean and intuitive design for a seamless shopping experience.
 - **Product Catalog:** Browse a wide variety of fresh fruits and vegetables.
 - **Special Offers:** Highlighting seasonal discounts and promotions.
-- **Mobile App Links:** Easily accessible on both the App Store and Google Play.
 
 ## Technologies Used
 
 - **Frontend:** HTML, CSS, JavaScript (Next.js)
-- **Database:** MongoDB
 
-## Getting Started
+## Installation Process
 
 1.  Clone the repository:
 
@@ -37,4 +35,4 @@ A modern e-commerce platform for ordering fresh fruits and vegetables online. Ou
 
 ## Live Demo
 
-You can view a live demo of the project [here](https://github.com/jubayerahmmad/fresh-harvests).
+You can view a live demo of the project [here](https://fresh-harvests-weld.vercel.app).
