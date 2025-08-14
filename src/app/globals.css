@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+.section-badge {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: rgb(116 155 63);
+  width: fit-content;
+  border-radius: 0.5rem;
+  background-color: rgba(116, 155, 63, 0.1);
+  padding: 0.25rem 0.75rem;
+}
