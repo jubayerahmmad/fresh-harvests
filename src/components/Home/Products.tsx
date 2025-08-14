@@ -112,7 +112,7 @@ const Products = () => {
         </div>
       )}
       <div className=" w-full text-center mt-8">
-        <Link href="/products">
+        <Link href="/shop">
           <button className="cursor-pointer  border border-[#FF6A1A]  bg-white  font-semibold px-16 py-2 rounded hover:bg-[#FF6A1A] hover:text-black text-[#FF6A1A] transition">
             See all products
           </button>
